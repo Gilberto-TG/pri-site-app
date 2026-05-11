@@ -27,7 +27,7 @@ RUN pip install --upgrade pip && \
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p staticfiles media dxf_files site_app/static/css site_app/static/js
+RUN mkdir -p staticfiles media dxf_files site_app/static/css site_app/static/js data
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
