@@ -6,13 +6,12 @@ services:
     ports:
       - "8505:8000"
     volumes:
-      # Persist database, media and dxf files outside container
-      - ./db.sqlite3:/app/db.sqlite3
+      - db_data:/app/db.sqlite3
       - ./media:/app/media
       - ./dxf_files:/app/dxf_files
     env_file:
       - .env
-    command: >
-      sh -c "python manage.py migrate &&
-             gunicorn config.wsgi:application
-             --config gunicorn.conf.py"
+    command: sh -c "python manage.py migrate && gunicorn config.wsgi:application --config gunicorn.conf.py"
+ 
+volumes:
+  db_data:
